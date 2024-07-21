@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import articleReducer from "../features/articleSlice"
 import categoriesReducer from "../features/categorieSlice"
+import cartReducer from "../features/cartSlice"
 
 import {persistReducer, FLUSH,
     REHYDRATE,
@@ -18,13 +19,16 @@ const persistConfig = {
   storage,
 }
 
+const persistedReducerCart = persistReducer(persistConfig, cartReducer)
 
 //const persistedReducerAuth = persistReducer(persistConfig, authReducer)
+
 
 const store = configureStore({
 reducer: {
   storearticles:articleReducer,
-  storecategories : categoriesReducer
+  storecategories : categoriesReducer,
+  storecart : persistedReducerCart
 },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -1,10 +1,26 @@
 import React from 'react'
-import {  useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../../features/cartSlice";
+
+import { useNavigate } from "react-router-dom";
+
+
 import "./styleCard.css"
 
 const AfficheArticles = () => {
 
 const {articles,isLoading,error} = useSelector((state)=>state.storearticles);
+
+ 
+const dispatch = useDispatch();
+let navigate=useNavigate();
+
+
+const handleAddToCart = (art) => {
+  dispatch(addToCart(art));
+  navigate("/cart");
+};
+
  
 return (
 <div className="card-container">
@@ -17,7 +33,7 @@ return (
         <h1 className='card-title'>{article.reference}</h1>
         <p className='card-description'>{article.designation.substr(0,20)}</p>
         <h1 className='card-title'>Prix : {article.prix} TND</h1>
-        <button className='card-button'><i className="fa-solid fa-cart-shopping"></i>Add to card</button>
+        <button  disabled={article.qtestock<=1} onClick={() => handleAddToCart(article)}><i className="fa-solid fa-cart-shopping"></i>Add to card</button>
     </div>
 
     </div>
