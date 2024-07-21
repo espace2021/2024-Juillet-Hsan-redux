@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import {setPage, setLimit, setSearchTerm, getArticlesPagination} from "../../../features/articleSlice";
+import {setPage, setLimit, getArticlesPagination} from "../../../features/articleSlice";
 import AfficheArticles from './AfficheArticles';
 
 import Pagination from './Pagination';
@@ -11,7 +11,7 @@ import Headerarticle from './Headerarticle';
 
 const Listarticles = () => {
   
-  let {page,limit,tot,searchTerm} = useSelector((state)=>state.storearticles);
+  let {page,limit,searchTerm} = useSelector((state)=>state.storearticles);
   
 
     const getProducts=async()=>{
@@ -23,36 +23,18 @@ const Listarticles = () => {
       getProducts()
     }, [dispatch,page,limit,searchTerm])
 
-    const handlePrevPage = () => {
-      if (page > 1) {
-        dispatch(setPage(page-1));
-      }
-    };
-  
-    const handleNextPage = () => {
-      if (page < tot) {
-        dispatch(setPage(page+1));
-      }
-    };
-    const handlePageChange = (page) => {
-      dispatch(setPage(page));
-    };
-  
+   
     const handleLimitChange = (event) => {
       dispatch(setLimit(parseInt(event.target.value, 10))); 
       dispatch(setPage(1)); // Réinitialiser la page lorsque le nombre d'éléments par page change
 
     };
-   const handleSearchChange = (event) => {
-      dispatch(setSearchTerm(event.target.value));
-      dispatch(setPage(1));
-    };
+
 
   return (
     <div>
      <div className="table-container-header">
-     <Headerarticle searchText={searchTerm}
-      handleSearchChange={handleSearchChange}/>
+     <Headerarticle />
     </div>
       
     <AfficheArticles/> 
@@ -74,12 +56,7 @@ const Listarticles = () => {
                     
                   </label>
                   </div>
-     <Pagination handlePrevPage={handlePrevPage}
-      handleNextPage={handleNextPage}
-      handlePageChange={handlePageChange}
-      totalPages={tot}
-      currentPage ={page}
-      />
+     <Pagination />
       </div>    
     </div>
    

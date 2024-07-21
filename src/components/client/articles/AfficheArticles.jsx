@@ -8,6 +8,8 @@ const {articles,isLoading,error} = useSelector((state)=>state.storearticles);
  
 return (
 <div className="card-container">
+  {isLoading ? <center>Loading ....</center>:null}
+  {error ? <center>Error ....</center>:null}
 {isLoading===false && articles && articles.map((article,ind)=>{
     return <div className='card' key={ind}>
      {article.imageart &&  <img src={article.imageart} alt ={article.reference}/>}
