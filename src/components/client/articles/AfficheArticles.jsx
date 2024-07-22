@@ -29,7 +29,7 @@ return (
       {error ? <center>Error ....</center> : null}
       {!isLoading && articles && articles.map((article, ind) => {
         return (
-          <div className="col-xl-3 col-lg-4 col-md-2 col-sm-6 col-12 mb-5" key={ind}>
+          <div className="col-xl-3 col-lg-6 col-md-2 col-sm-6 col-12 mb-5" key={ind}>
             <div className='card'>
               {article.imageart && <img src={article.imageart} alt={article.reference} />}
               <div className='card-content'>
