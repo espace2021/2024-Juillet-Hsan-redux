@@ -36,7 +36,7 @@ return (
                 <h1 className='card-title'>{article.reference}</h1>
                 <p className='card-description'>{article.designation.substr(0, 20)}</p>
                 <h1 className='card-title'>Prix : {article.prix} TND</h1>
-                <button disabled={article.qtestock <= 1} onClick={() => handleAddToCart(article)}>
+                <button className='card-button' disabled={article.qtestock <= 1} onClick={() => handleAddToCart(article)}>
                   <i className="fa-solid fa-cart-shopping"></i> Add to cart
                 </button>
               </div>
