@@ -1,6 +1,19 @@
 import { createSlice,createAsyncThunk} from '@reduxjs/toolkit'
-import {fetcharticles,addarticle,deletearticle,editarticle,fetcharticleById,fetcharticlesPagination} from
+import {fetcharticles,addarticle,deletearticle,editarticle,fetcharticleById,fetcharticlesPagination,updateQuantity} from
 "../services/articleservice"
+
+export const updateArticleQty = createAsyncThunk(
+    "article/updateArticleQty",
+    async (lineOrder, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try{
+    const res= await updateQuantity(lineOrder);
+    return res
+    }
+    catch (error) {
+    return rejectWithValue(error.message);
+    } }
+    );
 
 
 export const getArticlesPagination = createAsyncThunk(
@@ -113,6 +126,28 @@ reducers: {
 },
 extraReducers: (builder) => {
     builder
+//Modification article Qty
+.addCase(updateArticleQty.pending, (state, action) => {
+    state.isLoading=true;
+    state.error=null;
+    state.success=null;
+    })
+.addCase(updateArticleQty.fulfilled, (state, action) => {
+ 	action.payload.map(async (line) => { 
+            state.articles = state.articles.map((item) =>
+                item._id === line._id ? line : item
+                );
+            })
+    state.isLoading=false;
+    state.error=null;
+    state.success=true;
+    })
+.addCase(updateArticleQty.rejected, (state, action) => {
+    state.isLoading=false;
+    state.error=action.payload;
+    console.log(action.payload)
+    })
+
 //get articles avec pagination et Filtre 
 .addCase(getArticlesPagination.pending, (state, action) => { console.log('pending')
 state.isLoading=true;

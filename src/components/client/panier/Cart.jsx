@@ -5,12 +5,16 @@ import {
   clearCart,
   decreaseCart,
   getTotals,
-  removeFromCart,
+  removeFromCart
 } from "../../../features/cartSlice";
 
 import { Link } from "react-router-dom";
 
 import "./panier.css";
+
+import Api from "../../../Api/axios";
+import { loadStripe } from '@stripe/stripe-js';
+
 
 const Cart = () => {
 
@@ -41,6 +45,35 @@ const Cart = () => {
     const handleClearCart = useCallback(() => {
       dispatch(clearCart());
     }, [dispatch])
+  
+    const [status, setStatus] = React.useState("idle");
+    async function handleClickStripe(event) {
+        
+        event.preventDefault();
+        
+        if (cart.cartTotalAmount>0) {
+          setStatus("loading");
+          try {
+            const stripe = await loadStripe('pk_test_51KtYRUD3HS4vNAwatvmqAEXLKKX11UOcpkHfLnw9UPI9kZ7AJCOeLkqik61wHFXLmRGHUd4aNBvp45v82DpskKl300bMfznwlE');
+  
+            if (!stripe) throw new Error('Stripe failed to initialize.');
+            const cartItems=cart.cartItems
+            const checkoutResponse = await Api.post('payment', {cartItems})
+           const {sessionId} = await checkoutResponse.data;
+            const stripeError = await stripe.redirectToCheckout({sessionId});
+  
+            if (stripeError) {
+                console.error(stripeError);
+            }
+    
+           } catch (error) {
+            console.error(error);
+            setStatus("redirect-error");
+          }
+        } else {
+          setStatus("no-items");
+        }
+      }
   
   return (
     <div className="cart-container">
@@ -101,7 +134,7 @@ const Cart = () => {
                 <span className="amount">{cart.cartTotalAmount.toFixed(3)} TND</span>
               </div>
               <p>Taxes and shipping calculated at checkout</p>
-              <button>Check out</button>
+              <button onClick={(event)=>handleClickStripe(event)}>{status !== "loading" ? "Check Out" : "Loading..."}</button>
               <div className="continue-shopping">
                 <Link to="/">
                   

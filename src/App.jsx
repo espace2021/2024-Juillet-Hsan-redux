@@ -7,6 +7,7 @@ import ListarticlesCards from "./components/client/articles/Listarticles";
 
 import Cart from './components/client/panier/Cart';
 import NavScrolls from './components/client/NavScrolls';
+import SuccessPayment from './components/client/panier/successPayment'
 
 function App() {
  
@@ -22,6 +23,7 @@ function App() {
 <Route path="/categories"  element={<Listcategories/>}/>
 <Route path="/scategories"  element={<Listscategories/>}/>
 <Route path='/cart' element={<Cart/>}/>
+<Route path="/successPayment" element={<SuccessPayment/>}/>
 </Routes>
 </Router>
     </>
