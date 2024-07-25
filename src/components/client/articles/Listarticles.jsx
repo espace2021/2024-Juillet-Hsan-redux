@@ -24,12 +24,10 @@ const Listarticles = () => {
     }, [dispatch,page,limit,searchTerm])
 
    
-    const handleLimitChange = (event) => {
+   const handleLimitChange = React.useCallback((event) => {
       dispatch(setLimit(parseInt(event.target.value, 10))); 
       dispatch(setPage(1)); // Réinitialiser la page lorsque le nombre d'éléments par page change
-
-    };
-
+    }, [dispatch]);
 
   return (
     <div>

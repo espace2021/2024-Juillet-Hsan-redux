@@ -1,13 +1,17 @@
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router,Routes, Route } from "react-router-dom";
-import Listarticles from "./components/admin/articles/Listarticles";
-import Listcategories from "./components/admin/categories/Categoriesappadmin";
-import Listscategories from "./components/admin/scategories/Listscategories";
-import ListarticlesCards from "./components/client/articles/Listarticles";
+
 //import Menu from "./components/admin/Menu";
 
-import Cart from './components/client/panier/Cart';
-import NavScrolls from './components/client/NavScrolls';
-import SuccessPayment from './components/client/panier/successPayment'
+const Listarticles = lazy(() => import('./components/admin/articles/Listarticles'));
+const Listcategories = lazy(() => import('./components/admin/categories/Categoriesappadmin'));
+const Listscategories = lazy(() => import('./components/admin/scategories/Listscategories'));
+const ListarticlesCards = lazy(() => import('./components/client/articles/Listarticles'));
+const Cart = lazy(() => import('./components/client/panier/Cart'));
+const NavScrolls = lazy(() => import('./components/client/NavScrolls'));
+const SuccessPayment = lazy(() => import('./components/client/panier/successPayment'));
+const ListarticlesUSP = lazy(() => import('./components/client/articles/ListArticlesUSP'));
+const ListarticlesUSPComp = lazy(() => import('./components/client/articlesUSP/ListArticlesUSP'));
 
 function App() {
  
@@ -17,6 +21,8 @@ function App() {
      
    {/* <Menu/> */} 
    <NavScrolls/>  
+    {/* Utiliser Suspense pour gérer les chargements de composants */}
+    <Suspense fallback={<div>Loading...</div>}>
 <Routes>
 <Route path="/"  element={<ListarticlesCards/>}/>
 <Route path="/articles"  element={<Listarticles/>}/>
@@ -24,7 +30,10 @@ function App() {
 <Route path="/scategories"  element={<Listscategories/>}/>
 <Route path='/cart' element={<Cart/>}/>
 <Route path="/successPayment" element={<SuccessPayment/>}/>
+<Route path="/listarticlesUSP" element={<ListarticlesUSP/>}/>
+<Route path="/listarticlesUSPComp" element={<ListarticlesUSPComp/>}/>
 </Routes>
+    </Suspense>
 </Router>
     </>
   )
