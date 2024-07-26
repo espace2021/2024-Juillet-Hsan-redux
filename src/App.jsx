@@ -13,6 +13,8 @@ const SuccessPayment = lazy(() => import('./components/client/panier/successPaym
 const ListarticlesUSP = lazy(() => import('./components/client/articles/ListArticlesUSP'));
 const ListarticlesUSPComp = lazy(() => import('./components/client/articlesUSP/ListArticlesUSP'));
 
+const ListarticlesRTK= lazy(() => import('./components/client/articlesRTK/ListArticlesRTK'));
+
 function App() {
  
   return (
@@ -32,6 +34,8 @@ function App() {
 <Route path="/successPayment" element={<SuccessPayment/>}/>
 <Route path="/listarticlesUSP" element={<ListarticlesUSP/>}/>
 <Route path="/listarticlesUSPComp" element={<ListarticlesUSPComp/>}/>
+
+<Route path="/listarticlesRTK" element={<ListarticlesRTK/>}/>
 </Routes>
     </Suspense>
 </Router>

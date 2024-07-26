@@ -5,6 +5,8 @@ import articleReducer from "../features/articleSlice"
 import categoriesReducer from "../features/categorieSlice"
 import cartReducer from "../features/cartSlice"
 
+import {api} from '../features/rtkQueryArticle'
+
 import {persistReducer, FLUSH,
     REHYDRATE,
     PAUSE,
@@ -28,13 +30,15 @@ const store = configureStore({
 reducer: {
   storearticles:articleReducer,
   storecategories : categoriesReducer,
-  storecart : persistedReducerCart
+  storecart : persistedReducerCart,
+  [api.reducerPath]: api.reducer,
 },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    })
+    }).concat(api.middleware),
 })
 export default store
+
