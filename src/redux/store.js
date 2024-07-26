@@ -7,6 +7,8 @@ import cartReducer from "../features/cartSlice"
 
 import {api} from '../features/rtkQueryArticle'
 
+import articleReducerRTK from '../features/articleSliceRTK';
+
 import {persistReducer, FLUSH,
     REHYDRATE,
     PAUSE,
@@ -32,6 +34,7 @@ reducer: {
   storecategories : categoriesReducer,
   storecart : persistedReducerCart,
   [api.reducerPath]: api.reducer,
+  articleRTK : articleReducerRTK
 },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

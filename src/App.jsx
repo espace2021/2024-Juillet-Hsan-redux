@@ -15,6 +15,9 @@ const ListarticlesUSPComp = lazy(() => import('./components/client/articlesUSP/L
 
 const ListarticlesRTK= lazy(() => import('./components/client/articlesRTK/ListArticlesRTK'));
 
+const ListarticlesRTKComp= lazy(() => import('./components/client/articlesRTKcomp/ListArticlesRTKcomp'));
+
+
 function App() {
  
   return (
@@ -36,6 +39,7 @@ function App() {
 <Route path="/listarticlesUSPComp" element={<ListarticlesUSPComp/>}/>
 
 <Route path="/listarticlesRTK" element={<ListarticlesRTK/>}/>
+<Route path="/listarticlesRTKcomp" element={<ListarticlesRTKComp/>}/>
 </Routes>
     </Suspense>
 </Router>
