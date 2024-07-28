@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-
+import authReducer from "../features/authSlice"
 import articleReducer from "../features/articleSlice"
 import categoriesReducer from "../features/categorieSlice"
 import cartReducer from "../features/cartSlice"
@@ -25,7 +25,7 @@ const persistConfig = {
 
 const persistedReducerCart = persistReducer(persistConfig, cartReducer)
 
-//const persistedReducerAuth = persistReducer(persistConfig, authReducer)
+const persistedReducerAuth = persistReducer(persistConfig, authReducer)
 
 
 const store = configureStore({
@@ -34,7 +34,8 @@ reducer: {
   storecategories : categoriesReducer,
   storecart : persistedReducerCart,
   [api.reducerPath]: api.reducer,
-  articleRTK : articleReducerRTK
+  articleRTK : articleReducerRTK,
+  auth:persistedReducerAuth
 },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

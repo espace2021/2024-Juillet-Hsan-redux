@@ -17,6 +17,8 @@ const ListarticlesRTK= lazy(() => import('./components/client/articlesRTK/ListAr
 
 const ListarticlesRTKComp= lazy(() => import('./components/client/articlesRTKcomp/ListArticlesRTKcomp'));
 
+import Login from './components/authentification/login'
+import Dashboard from './components/admin/dashboard';
 
 function App() {
  
@@ -40,6 +42,10 @@ function App() {
 
 <Route path="/listarticlesRTK" element={<ListarticlesRTK/>}/>
 <Route path="/listarticlesRTKcomp" element={<ListarticlesRTKComp/>}/>
+
+<Route path="/login" element={<Login/>}/>
+<Route path="/dashboard" element={<Dashboard/>}/>
+
 </Routes>
     </Suspense>
 </Router>

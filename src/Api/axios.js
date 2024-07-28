@@ -1,8 +1,7 @@
 import axios from "axios";
 
-//axios.defaults.baseURL = 'http://localhost:3002/api/';
-//axios.defaults.baseURL = 'https://ecombackend-rouge.vercel.app/api/';
-axios.defaults.baseURL = 'https://2024-juillet-hsan-backend.vercel.app/api/';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+
 
 //simple request sans header
 
@@ -66,10 +65,7 @@ function (error) {
       if(refreshToken && refreshToken !== ""){
 
          return axios
-
-        // .post(' https://ecombackend-rouge.vercel.app/api/users/refreshToken/',  {refreshToken:refreshToken})
-        // .post('http://localhost:3002/api/users/refreshToken/',  {refreshToken:refreshToken})
-        .post('https://2024-juillet-hsan-backend.vercel.app/api/users/refreshToken/',  {refreshToken:refreshToken})
+         .post(axios.defaults.baseURL+'users/refreshToken/',  {refreshToken:refreshToken})
           .then(res => { console.log(res)
 
               if (res.status === 200) { 
