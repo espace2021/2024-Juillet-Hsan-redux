@@ -19,6 +19,7 @@ const ListarticlesRTKComp= lazy(() => import('./components/client/articlesRTKcom
 
 import Login from './components/authentification/login'
 import Dashboard from './components/admin/dashboard';
+import Logout from './components/authentification/logout'
 
 function App() {
  
@@ -45,6 +46,7 @@ function App() {
 
 <Route path="/login" element={<Login/>}/>
 <Route path="/dashboard" element={<Dashboard/>}/>
+<Route path="/logout" element={<Logout/>}/>
 
 </Routes>
     </Suspense>

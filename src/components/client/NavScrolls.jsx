@@ -11,12 +11,35 @@ const Menu = () => {
 
     const navigate = useNavigate();
     const {cartTotalQuantity} = useSelector((state) => state.storecart);
+
+    const {isLoggedIn,user} = useSelector((state) =>state.auth);
   
 return (
     <Navbar bg="primary" variant="dark">
     <Container>
     <Navbar.Brand >E-Shopping</Navbar.Brand>
-    <Nav className="me-auto">
+
+    <Nav>
+
+    <Nav.Link as={Link} to="/">Home</Nav.Link>
+    </Nav>
+    <Nav>
+    { isLoggedIn===true ?<> 
+  <img 
+   src={user.avatar} 
+   alt="Avatar"
+   style={{ "borderRadius": "50%"}}
+   width="30"
+   height="30"
+   />
+   {" "}
+  {user.name} 
+  <button onClick={()=>{navigate("/logout")}}> <i className="fa fa-sign-out"></i> logout </button>
+  </>
+    : <button onClick={()=>{navigate("/login")}}> <i className="fa fa-user"></i> login </button>
+    }
+</Nav>
+<Nav>
     <Button variant="danger"  onClick={()=>{navigate("/cart")}} >
               
     <i className="fa-solid fa-cart-shopping"></i>
@@ -25,8 +48,7 @@ return (
              </Badge>
     </Button>
 
-      <Nav.Link as={Link} to="/">Home</Nav.Link>
-      
+    
     </Nav>
     </Container>
   </Navbar>
