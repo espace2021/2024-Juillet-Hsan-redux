@@ -1,4 +1,4 @@
-.auth-container {
+.register-container {
     font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
     margin: 0;
   }
   
- .auth-form-container {
+ .register-form-container {
   background-color: #fff;
   padding: 2rem;
   border-radius: 10px;
@@ -16,7 +16,7 @@
   width: 500px; 
 }
 
-.auth-form h2 {
+.register-form h2 {
   margin-bottom: 1.5rem;
   color: #333;
   text-align: center;
@@ -60,23 +60,23 @@
 }
 
 .input-group input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #ff0077;
+  box-shadow: 0 0 5px rgba(243, 196, 223, 0.5);
 }
 
-button {
+.buttonRegister {
   width: 100%;
   padding: 1rem; /* Augmenté de 0.75rem à 1rem */
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #ff0090;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
+.buttonRegister:hover {
+  background-color: #e4acd0;
 }
 

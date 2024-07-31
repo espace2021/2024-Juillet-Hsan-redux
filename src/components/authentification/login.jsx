@@ -65,6 +65,11 @@ dispatch(login(objetuser))
         </div>
         <button type="submit">Log In</button>
       </form>
+      
+      <Link href="#" to="/register">
+                  {"Don't have an account? Sign Up"}
+      </Link>
+
     </div>
     </div>
   );
