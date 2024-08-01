@@ -22,6 +22,8 @@ import Dashboard from './components/admin/dashboard';
 import Logout from './components/authentification/logout'
 import Register from './components/client/authentification/register'
 
+import ProtectedRoutes from "./ProtectedRoute";
+
 function App() {
  
   return (
@@ -35,8 +37,8 @@ function App() {
 <Routes>
 <Route path="/"  element={<ListarticlesCards/>}/>
 <Route path="/articles"  element={<Listarticles/>}/>
-<Route path="/categories"  element={<Listcategories/>}/>
-<Route path="/scategories"  element={<Listscategories/>}/>
+{/*<Route path="/categories"  element={<Listcategories/>}/>
+<Route path="/scategories"  element={<Listscategories/>}/>*/}
 <Route path='/cart' element={<Cart/>}/>
 <Route path="/successPayment" element={<SuccessPayment/>}/>
 <Route path="/listarticlesUSP" element={<ListarticlesUSP/>}/>
@@ -45,8 +47,14 @@ function App() {
 <Route path="/listarticlesRTK" element={<ListarticlesRTK/>}/>
 <Route path="/listarticlesRTKcomp" element={<ListarticlesRTKComp/>}/>
 
-<Route path="/login" element={<Login/>}/>
+
+<Route element={<ProtectedRoutes/>}>
 <Route path="/dashboard" element={<Dashboard/>}/>
+<Route path="/categories"  element={<Listcategories/>}/>
+<Route path="/scategories"  element={<Listscategories/>}/>
+</Route>
+
+<Route path="/login" element={<Login/>}/>
 <Route path="/logout" element={<Logout/>}/>
 <Route path="/register" element={<Register/>}/>
 
