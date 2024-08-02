@@ -25,8 +25,8 @@ const Success = () => {
           totalPrice: lc.prix*lc.cartQuantity
         }));
             
-       dispatch(updateArticleQty(lineOrder)).then(() =>  dispatch(clearCart()))
-        
+       dispatch(updateArticleQty(lineOrder))
+       dispatch(clearCart())
       }
 
   return (

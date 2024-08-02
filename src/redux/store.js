@@ -23,7 +23,7 @@ const persistConfig = {
   storage,
 }
 
-const persistedReducerCart = persistReducer(persistConfig, cartReducer)
+//const persistedReducerCart = persistReducer(persistConfig, cartReducer)
 
 const persistedReducerAuth = persistReducer(persistConfig, authReducer)
 
@@ -32,7 +32,8 @@ const store = configureStore({
 reducer: {
   storearticles:articleReducer,
   storecategories : categoriesReducer,
-  storecart : persistedReducerCart,
+  //storecart : persistedReducerCart,
+  storecart : cartReducer,
   [api.reducerPath]: api.reducer,
   articleRTK : articleReducerRTK,
   auth:persistedReducerAuth
