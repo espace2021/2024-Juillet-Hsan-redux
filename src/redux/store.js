@@ -8,13 +8,10 @@ import cartReducer from "../features/cartSlice"
 import {api} from '../features/rtkQueryArticle'
 
 import articleReducerRTK from '../features/articleSliceRTK';
+import { persistStore, persistReducer,
+  FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER
+ } from 'redux-persist';
 
-import {persistReducer, FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 const persistConfig = {
@@ -23,17 +20,17 @@ const persistConfig = {
   storage,
 }
 
-//const persistedReducerCart = persistReducer(persistConfig, cartReducer)
+const persistedReducerCart = persistReducer(persistConfig, cartReducer)
 
 const persistedReducerAuth = persistReducer(persistConfig, authReducer)
 
 
-const store = configureStore({
+export const store = configureStore({
 reducer: {
   storearticles:articleReducer,
   storecategories : categoriesReducer,
-  //storecart : persistedReducerCart,
-  storecart : cartReducer,
+  storecart : persistedReducerCart,
+ // storecart : cartReducer,
   [api.reducerPath]: api.reducer,
   articleRTK : articleReducerRTK,
   auth:persistedReducerAuth
@@ -45,5 +42,6 @@ reducer: {
       },
     }).concat(api.middleware),
 })
-export default store
+
+export const persistor = persistStore(store);
 

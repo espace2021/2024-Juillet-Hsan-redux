@@ -3,6 +3,7 @@ import { BrowserRouter as Router,Routes, Route } from "react-router-dom";
 
 //import Menu from "./components/admin/Menu";
 
+/*
 const Listarticles = lazy(() => import('./components/admin/articles/Listarticles'));
 const Listcategories = lazy(() => import('./components/admin/categories/Categoriesappadmin'));
 const Listscategories = lazy(() => import('./components/admin/scategories/Listscategories'));
@@ -16,6 +17,21 @@ const ListarticlesUSPComp = lazy(() => import('./components/client/articlesUSP/L
 const ListarticlesRTK= lazy(() => import('./components/client/articlesRTK/ListArticlesRTK'));
 
 const ListarticlesRTKComp= lazy(() => import('./components/client/articlesRTKcomp/ListArticlesRTKcomp'));
+*/
+
+import Listarticles from './components/admin/articles/Listarticles'
+import Listcategories from './components/admin/categories/Categoriesappadmin'
+import Listscategories from './components/admin/scategories/Listscategories'
+import ListarticlesCards from './components/client/articles/Listarticles'
+import Cart from './components/client/panier/Cart'
+import NavScrolls from  './components/client/NavScrolls'
+import SuccessPayment from  './components/client/panier/successPayment'
+import ListarticlesUSP from './components/client/articles/ListArticlesUSP'
+import ListarticlesUSPComp from './components/client/articlesUSP/ListArticlesUSP'
+
+import ListarticlesRTK from './components/client/articlesRTK/ListArticlesRTK'
+
+import ListarticlesRTKComp from './components/client/articlesRTKcomp/ListArticlesRTKcomp'
 
 import Login from './components/authentification/login'
 import Dashboard from './components/admin/dashboard';
